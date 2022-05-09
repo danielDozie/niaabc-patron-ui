@@ -14,7 +14,7 @@ export const MemberCard = ({ members }: any) => {
                     <div className="absolute px-1 bg-teal-700 rounded-sm">
                         <p className="text-right text-white justify-end float-right text-[10px]">{member.lead_position !== "" && member.lead_position !== null ? member.lead_position : null}</p>
                     </div>
-
+                    
                     <div className="absolute px-1 mx-32 mt-4 rotate-90 bg-pink-700 rounded-sm md:mx-40">
                         <p className="text-right text-white justify-end float-right text-[10px]">{member.payment_status === "Paid" ? "PATRON" : null}</p>
                     </div>
