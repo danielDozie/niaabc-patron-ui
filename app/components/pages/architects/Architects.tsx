@@ -14,7 +14,7 @@ export const Architects = ({ memberData }: Members) => {
   const members = _.slice(sortedMembers, init, endValue)
   const [buttonLoading, setButtonLoading] = React.useState(false)
   const [patrons, setPatrons] = React.useState(members)
-
+  
   const handleLoadMore = (e: { preventDefault: () => void; }) => {
     e.preventDefault()
     setButtonLoading(true)

@@ -1,15 +1,12 @@
 import React from "react";
-
 // Button types are
 // 1. flat-gradient, 2.flat, 3.rounded-gradient, 4.rounded
-
 
 interface BUTTON {
     text: string;
     icon?: object;
     type: string;
   }
-  
 
 export const Button = ({ text, icon, type }: BUTTON): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
