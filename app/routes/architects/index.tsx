@@ -1,22 +1,23 @@
-import { LoaderFunction } from '@remix-run/node';
+import type { LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from "@remix-run/react";
 import axios from 'axios';
 import { Architects } from '../../components/pages/architects/Architects';
-import { Members } from 'Types';
+import type { Members } from 'Types';
 
-export async function Members(): Promise<Members> {
+export async function MembersData(): Promise<Members> {
     const { data } = await axios.get(process.env.API_URL + '/users');
     return data
 }
 
 export const loader: LoaderFunction = async () => {
-    const response = await Members()
+    const response = await MembersData()
     return response
 };
 
-export default function index(): JSX.Element {
+export default function Index(): React.ReactElement {
     const memberData = useLoaderData()
+
     return (
-        <Architects memberData={memberData} />
+        <Architects memberData={memberData ?? memberData} />
     )
 }
