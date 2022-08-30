@@ -1,10 +1,38 @@
-import { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 const imagePath =
   "https://dashboard.niaabujachapter.com/public/uploads/profile/";
-type Architect = {
-  data: {};
+  
+interface Architect {
+  id: number;
+  payment_status: string;
+  image: string;
+  firstname: string
+  lastname: string
+  lead_position: string
+  email: string;
+  phone: string;
+  additional?: any
+  nia: string;
+  gender: string;
+  marital_status: string;
+  nia_member1: string;
+  nia_member2: string;
+  nia_member3: string;
+  nia_member4: string;
+  nia_member5: string;
+  nia_member6: string;
+  arcon_member1: string;
+  arcon_member2: string;
+  arcon_member3: string;
+  arcon_member4: string;
+  arcon_member5: string;
+  address: any;
+  address1: string;
+  dmn: string;
+  
 };
 
 export async function GetArchitect(slug: string): Promise<Architect> {
@@ -20,7 +48,13 @@ export const loader: LoaderFunction = async ({
 };
 
 export default function Index() {
-  const member = useLoaderData();
+  const data = useLoaderData();
+  const [member, setMember] = useState<Architect>();
+
+  useEffect(() => {
+    setMember(data);
+  }, [data])
+  
   return (
     <>
       <div className="w-full pt-20 pb-16">
@@ -41,7 +75,7 @@ export default function Index() {
                   : imagePath + member?.image
               }
               className="w-40 h-40 mx-auto mt-12 rounded-full shadow-md"
-            />
+            alt="profile"/>
             <div className="mt-4 text-sm text-center">
               <p className="font-bold">
                 {member?.firstname} {member?.lastname}
@@ -50,9 +84,9 @@ export default function Index() {
               <p className="">{member?.email}</p>
               <a href={`tel:${member?.phone}`}>
                 <p className="py-4 font-semibold text-gray-900 || dark:text-white ">
-                  {member?.phone?.length < 11
+                  {member?.phone && member?.phone.length < 11
                     ? `${member?.phone} Update required`
-                    : member.phone}
+                    : member?.phone}
                 </p>
               </a>
             </div>
@@ -85,7 +119,7 @@ export default function Index() {
                 <span className="text-sm font-semibold text-left">Cadre: </span>
                 <span className="text-sm text-left">
                   {member?.additional.nia
-                    ? JSON.parse(member?.additional).nia
+                    ? JSON.parse(member?.additional)?.nia
                     : "Not Listed"}
                 </span>
               </p>
@@ -103,29 +137,29 @@ export default function Index() {
                 <span className="text-sm font-semibold text-left">
                   Gender:{" "}
                 </span>
-                {JSON.parse(member?.additional).gender
-                  ? JSON.parse(member?.additional).gender
+                {JSON.parse(member?.additional)?.gender
+                  ? JSON.parse(member?.additional)?.gender
                   : "Not Given"}
               </p>
               <p className="text-sm text-left">
                 <span className="text-sm font-semibold text-left">
                   Marital Status:
                 </span>{" "}
-                {JSON.parse(member?.additional).marital_status
-                  ? JSON.parse(member?.additional).marital_status
+                {JSON.parse(member?.additional)?.marital_status
+                  ? JSON.parse(member?.additional)?.marital_status
                   : "Not Given"}{" "}
               </p>
               <p className="text-sm text-left">
                 <span className="text-sm font-semibold text-left">
                   NIA Membership:
                 </span>{" "}
-                {JSON.parse(member?.additional).nia_member1 !== "" && JSON.parse(member?.additional).nia_member1 !== null && JSON.parse(member?.additional).nia_member1 !== undefined && JSON.parse(member?.additional).nia_member1 !== "-"
-                  ? JSON.parse(member?.additional).nia_member1 +
-                    JSON.parse(member?.additional).nia_member2 +
-                    JSON.parse(member?.additional).nia_member3 +
-                    JSON.parse(member?.additional).nia_member4 +
-                    JSON.parse(member?.additional).nia_member5 +
-                    JSON.parse(member?.additional).nia_member6
+                {JSON.parse(member?.additional)?.nia_member1 !== "" && JSON.parse(member?.additional)?.nia_member1 !== null && JSON.parse(member?.additional)?.nia_member1 !== undefined && JSON.parse(member?.additional)?.nia_member1 !== "-"
+                  ? JSON.parse(member?.additional)?.nia_member1 +
+                    JSON.parse(member?.additional)?.nia_member2 +
+                    JSON.parse(member?.additional)?.nia_member3 +
+                    JSON.parse(member?.additional)?.nia_member4 +
+                    JSON.parse(member?.additional)?.nia_member5 +
+                    JSON.parse(member?.additional)?.nia_member6
                   : "Not Registered"}
               </p>
               <p className="text-sm text-left">
@@ -133,12 +167,12 @@ export default function Index() {
                   ARCON Membership:{" "}
                 </span>
                 <span className="text-sm text-left">
-                  {JSON.parse(member?.additional).arcon_member1 !== "" && JSON.parse(member?.additional).arcon_member1 !== null && JSON.parse(member?.additional).arcon_member1 !== undefined && JSON.parse(member?.additional).arcon_member1 !== "-"
-                    ? JSON.parse(member?.additional).arcon_member1 +
-                      JSON.parse(member?.additional).arcon_member2 +
-                      JSON.parse(member.additional).arcon_member3 +
-                      JSON.parse(member?.additional).arcon_member4 +
-                      JSON.parse(member?.additional).arcon_member5
+                  {JSON.parse(member?.additional)?.arcon_member1 !== "" && JSON.parse(member?.additional)?.arcon_member1 !== null && JSON.parse(member?.additional)?.arcon_member1 !== undefined && JSON.parse(member?.additional)?.arcon_member1 !== "-"
+                    ? JSON.parse(member?.additional)?.arcon_member1 +
+                      JSON.parse(member?.additional)?.arcon_member2 +
+                      JSON.parse(member?.additional)?.arcon_member3 +
+                      JSON.parse(member?.additional)?.arcon_member4 +
+                      JSON.parse(member?.additional)?.arcon_member5
                     : "Not Registered"}
                 </span>
               </p>
@@ -159,8 +193,8 @@ export default function Index() {
                   Address:{" "}
                 </span>
                 <span className="text-sm text-left">
-                  {JSON.parse(member?.address).address1
-                    ? JSON.parse(member?.address).address1
+                  {JSON.parse(member?.address)?.address1
+                    ? JSON.parse(member?.address)?.address1
                     : "Not Given"}
                 </span>
               </p>

@@ -30,16 +30,16 @@ export default function App() {
         <Links />
       </head>
       <body>
-      <ThemeProvider>
-      <Layout>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </Layout>
-      </ThemeProvider>
+        <ThemeProvider>
+          <Layout>
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </Layout>
+        </ThemeProvider>
       </body>
     </html>
-      
+
   );
 }

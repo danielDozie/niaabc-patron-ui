@@ -1,6 +1,6 @@
 import { BiSearchAlt } from "react-icons/bi";
 import { MemberCard } from "./MemberCard";
-import { Members } from "Types";
+import type { Members } from "Types";
 import _ from "lodash";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import React from "react";
@@ -28,7 +28,7 @@ export const Architects = ({ memberData }: Members) => {
 
   React.useEffect(() => {
     setPatrons(members);
-  }, [endValue]);
+  }, [endValue, members]);
 
   return (
     <div className="pb-16 pt-20 || dark:bg-black">
@@ -75,6 +75,7 @@ export const Architects = ({ memberData }: Members) => {
                       <img
                         src={article.image}
                         className="mr-2 rounded-sm w-14 h-14"
+                        alt="article"
                       />
                     </div>
                     <div className="w-full ">
