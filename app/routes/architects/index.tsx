@@ -15,7 +15,6 @@ export const loader: LoaderFunction = async () => {
 
 export default function Index(): React.ReactElement {
     const {memberData} = useLoaderData()
-
     return (
         <Architects memberData={memberData} />
     )
