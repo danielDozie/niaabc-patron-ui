@@ -1,39 +1,11 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import type { Architect } from "Types";
 const imagePath =
   "https://dashboard.niaabujachapter.com/public/uploads/profile/";
   
-interface Architect {
-  id: number;
-  payment_status: string;
-  image: string;
-  firstname: string
-  lastname: string
-  lead_position: string
-  email: string;
-  phone: string;
-  additional?: any
-  nia: string;
-  gender: string;
-  marital_status: string;
-  nia_member1: string;
-  nia_member2: string;
-  nia_member3: string;
-  nia_member4: string;
-  nia_member5: string;
-  nia_member6: string;
-  arcon_member1: string;
-  arcon_member2: string;
-  arcon_member3: string;
-  arcon_member4: string;
-  arcon_member5: string;
-  address: any;
-  address1: string;
-  dmn: string;
-  
-};
+
 
 export async function GetArchitect(slug: string): Promise<Architect> {
   const { data } = await axios.get(process.env.API_URL + `/users/` + slug);
@@ -48,13 +20,7 @@ export const loader: LoaderFunction = async ({
 };
 
 export default function Index() {
-  const data = useLoaderData();
-  const [member, setMember] = useState<Architect>();
-
-  useEffect(() => {
-    setMember(data);
-  }, [data])
-  
+  const member:Architect = useLoaderData();
   return (
     <>
       <div className="w-full pt-20 pb-16">
