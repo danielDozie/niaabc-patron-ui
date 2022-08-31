@@ -1,12 +1,14 @@
+import { Accountable } from "~/components/pages/home/Accountable";
 import { Find } from "~/components/pages/home/Find";
 import { Hero } from "~/components/pages/home/Hero";
-import { Intro } from "~/components/pages/home/Intro";
+import { Recognised } from "~/components/pages/home/Recognised";
 
 export default function Index() {
   return (
     <>
     <Hero/>
-    <Intro />
+      <Recognised />
+      <Accountable />
     <Find />
     </>
   );

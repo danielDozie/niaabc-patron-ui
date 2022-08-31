@@ -8,7 +8,7 @@ export const Hero = () => {
         <div className="mx-auto mt-20 text-center font-Roboto">
           <img src={`../assets/image/Logo.svg`} className='h-24 mx-auto' alt='logo' />
           <div>
-          <h1 className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-red-900 text-7xl md:text-9xl">NIAABC PATRON</h1>
+          <h1 className="my-8 text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-red-900 md:text-7xl">NIAABC PATRON</h1>
           </div>
           <div className="flex justify-center py-8 font-light text-center text-white text-md gap-x-4">
             <span>Verifiable </span>
