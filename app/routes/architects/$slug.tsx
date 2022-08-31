@@ -1,6 +1,5 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import axios from "axios";
 import type { Architect } from "Types";
 const imagePath =
   "https://dashboard.niaabujachapter.com/public/uploads/profile/";
@@ -8,8 +7,8 @@ const imagePath =
 
 
 export async function GetArchitect(slug: string): Promise<Architect> {
-  const { data } = await axios.get(process.env.API_URL + `/users/` + slug);
-  return data;
+  const data = await fetch(process.env.API_URL + `/users/` + slug);
+  return await data.json();
 }
 
 export const loader: LoaderFunction = async ({
